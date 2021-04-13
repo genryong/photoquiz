@@ -1,0 +1,13 @@
+<div class="container">
+  <h2><%= @user.name %></h2>
+    <%= @photos.each do |photo| %>
+      <div class="row">
+          <div class="col">
+            <%= photo.image %>
+            <img src="images/notepc-wp.jpeg" alt="">
+          </div>
+          <p><%= photo.text %></p>
+      </div>
+    <% end %>
+    <%= paginate @photos %>
+</div>
