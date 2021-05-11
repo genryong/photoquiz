@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # @photos = Photo.order(id: :desc).page(params[:page]).per(25)
+    @photos = @user.photos.order(id: :desc).page(params[:page])
   end
 
   def new

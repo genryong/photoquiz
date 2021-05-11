@@ -5,4 +5,23 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   
   has_secure_password
+  
+  has_many :photos, dependent: :destroy
+  has_many :answers
+  has_many :likes
+  has_many :best_answers, through: :likes, source: :answer
+  
+  def like(answer)
+    self.likes.find_or_create_by(answer: answer)
+  end
+  
+  def unlike(answer)
+    like = self.likes.find_by(answer: answer)
+    like.destroy if like
+  end
+    
+  def best_answers?(answer)
+    self.best_answers.include?(answer)
+  end
+  
 end

@@ -1,0 +1,14 @@
+<%= image_tag @photo.image.url if @photo.image? %>
+<div class="offset-md-2">
+      <p>
+        <%= form_with(model:[@photo, @answer], method: :post) do |f| %>
+        <div class="form-group">
+            <%= f.text_area :content, class: 'form-control', rows: 5 %>
+            <%= f.hidden_field :photo_id, value: @photo.id %>
+        </div>
+          <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+        <% end %>
+      </p>
+</div>
+
+<%= link_to '戻る', photo_path(@photo) %>

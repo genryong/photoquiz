@@ -1,4 +1,12 @@
 <div class="container">
-  <h2><%= @user.name %></h2>
-   
+  <h2 style="text-align: center;"><%= @user.name %>の投稿一覧</h2>
+  <div class="center-block">
+   <% @photos.each do |photo| %>
+   <div><%= link_to "写真詳細ページ", photo_path(photo) %></div>
+     <div style="border: 2px solid;">
+       <%= image_tag photo.image.url if photo.image? %>
+       <%= photo.content %>
+     </div>
+   <% end %>
+  </div>
 </div>

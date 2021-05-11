@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="offset-md-3 col-md-5">
+    <p>
+      <%= image_tag @photo.image.url if @photo.image? %>
+    </p>
+    <p>
+      <strong>クイズの問題:</strong>
+      <%= @photo.content %>
+    </p>
+    
+      <%= link_to "回答する", new_photo_answer_path(@photo) %>
+      
+      <ul class="list-unstyled">
+        
+        <% @answers.each do |answer| %>
+       
+            <div class="media-body">
+              <div style="border: solid 1px #000; margin-bottom: 8px;">
+                <div class="user-name">
+                  ユーザ名:<%= answer.user.name %>  <div id="answer_<%= answer.id %>"  style="float: right;"><%= render  partial: 'likes/like_button', locals: {answer: answer} %></div>
+                </div>
+                <div>
+                  <%= answer.content %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </ul>
+      <%= paginate @answers %>
+    </div>
+</div>
+
+<%= link_to '戻る', photos_path %> |
+<%= link_to '編集', edit_photo_path(@photo) %> 
