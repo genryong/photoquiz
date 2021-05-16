@@ -1,5 +1,11 @@
 <% if current_user.best_answers?(answer) %>
-    <%= link_to 'いいね解除', like_path(answer: answer), method: :delete, remote: true %>
+  <%= form_with(model: current_user.likes.find_by(answer_id: answer.id), remote: true, method: :delete) do |f| %>
+    <%= hidden_field_tag :answer_id, answer.id %>
+    <%= f.submit 'ベストアンサー解除', class: 'btn btn-danger d-inline' %>
+  <% end %>
 <% else %>
-    <%= link_to 'いいね', likes_path(answer: answer), method: :post, class: 'answer-like__enable', remote: true %>
+  <%= form_with(model: current_user.likes.build, remote: true) do |f| %>
+    <%= hidden_field_tag :answer_id, answer.id %>
+    <%= f.submit 'ベストアンサー', class: 'btn btn-primary d-inline' %>
+  <% end %>
 <% end %>

@@ -14,3 +14,14 @@
  *= require_self
  */
 
+.answer-like__enable {
+    background-color: #0080ff;;
+    padding: 5px;
+    color: #000;
+}
+
+.answer-unlike__enable {
+    background-color: red;
+    padding: 5px;
+    color: #000;
+}

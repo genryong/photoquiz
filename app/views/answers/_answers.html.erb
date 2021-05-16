@@ -1,0 +1,16 @@
+ <ul class="list-unstyled">
+        
+        <% @answers.each do |answer| %>
+       
+            <div class="media-body">
+              <div style="border: solid 1px #000; margin-bottom: 8px;">
+                <div class="user-name">
+                  ユーザ名:<%= answer.user.name %>  <div id="answer_<%= answer.id %>", style="float: right;"><%= render  'likes/like_button', answer: answer %></div>
+                </div>
+                <div>
+                  <%= answer.content %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </ul>
