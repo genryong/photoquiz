@@ -1,0 +1,23 @@
+<h1>Photos</h1>
+<div class="row">
+  <% photos.each do |photo| %>
+    <div class="col-sm-6 col-md-4">
+      <div style="height: 400px;">
+        <div class="card">
+          <%= image_tag(photo.image.url, :class => "responsive-img", :height => "250") if photo.image?%>
+          <div class="caption container">
+             <p>ユーザネーム：<%= link_to photo.user.name, user_path(photo.user) %></p>
+            <h4><%= photo.content %></h4>
+             <%= link_to '回答する', photo %>
+           <% if current_user == photo.user %>
+             <%= link_to 'Edit', edit_photo_path(photo) %>
+             <%= link_to 'Destroy', photo, method: :delete, data: { confirm: '削除してもよろしいですか?' } %>
+           <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+ <%= paginate @photos %>
+ 

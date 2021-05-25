@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  before_action :correct_user, only: [:destroy]
   
   def new
     @answer =Answer.new
@@ -16,10 +17,24 @@ class AnswersController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
+    
+  def destroy
+    @answer.destroy
+    flash[:danger] = "コメントを削除しました。"
+    redirect_back(fallback_location: root_path)
+  end
+  
   
   private
   
   def answer_params
     params.require(:answer).permit(:content, :photo_id)
+  end
+  
+  def correct_user
+    @answer = current_user.answers.find_by(id: params[:id])
+    unless @answer
+      redirect_to root_url
+    end
   end
 end

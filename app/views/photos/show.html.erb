@@ -1,9 +1,10 @@
-<p id="notice"><%= notice %></p>
+<p><%= notice %></p>
 <div class="row">
   <div class="offset-md-3 col-md-5">
     <p>
-      <%= image_tag @photo.image.url if @photo.image? %>
+      <%= image_tag(@photo.image.url, :class => "responsive-img", :height => "250") if @photo.image?%>
     </p>
+    <div>クイズの投稿者：<%= link_to @photo.user.name, user_path(@photo.user) %></div>
     <p>
       <strong>クイズの問題:</strong>
       <%= @photo.content %>
@@ -19,5 +20,7 @@
     </div>
 </div>
 
-<%= link_to '戻る', photos_path %> |
-<%= link_to '編集', edit_photo_path(@photo) %> 
+<% if current_user == @photo.user %>
+<%= link_to '編集', edit_photo_path(@photo) %> |
+<% end %>
+<%= link_to '戻る', root_path %> 

@@ -9,14 +9,10 @@ Rails.application.routes.draw do
   
   get 'signup', to: 'users#new'
   resources :photos do
-    resources :answers, only: [:create, :new]
+    resources :answers, only: [:create, :new, :destroy]
   end
   
-  resources :users, only: [:index, :show, :create] do
-    member do
-      get :best_answers
-    end
-  end
+  resources :users, only: [:index, :show, :create]
   resources :likes, only: [:create, :destroy]
   
 end

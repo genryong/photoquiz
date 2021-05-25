@@ -1,10 +1,10 @@
 class PhotosController < ApplicationController
   before_action :set_photo, only: %i[ show edit update destroy ]
-
+  before_action :correct_user, only: [:destroy, :edit]
   # GET /photos or /photos.json
-  def index
-    @photos = Photo.all
-  end
+  # def index
+  #   @photos = Photo.all.order(id: :desc).page(params[:page]).per(3)
+  # end
 
   # GET /photos/1 or /photos/1.json
   def show
@@ -28,7 +28,7 @@ class PhotosController < ApplicationController
     
     if @photo.save
       flash[:success] = '投稿に成功しました。'
-      redirect_to photos_path
+      redirect_to root_path
     else
       flash.now[:danger] = "投稿に失敗しました。"
       render :new
@@ -52,9 +52,10 @@ class PhotosController < ApplicationController
   def destroy
     @photo.destroy
     respond_to do |format|
-      format.html { redirect_to photos_url, notice: "Photo was successfully destroyed." }
+      format.html { redirect_to root_path, notice: "投稿を削除しました." }
       format.json { head :no_content }
     end
+    
   end
 
   private
@@ -66,5 +67,12 @@ class PhotosController < ApplicationController
     # Only allow a list of trusted parameters through.
     def photo_params
       params.require(:photo).permit(:image, :content)
+    end
+    
+    def correct_user
+      @photo = current_user.photos.find_by(id: params[:id])
+      unless @photo
+        redirect_to root_url
+      end
     end
 end

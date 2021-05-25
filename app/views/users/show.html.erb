@@ -1,12 +1,17 @@
-<div class="container">
+
   <h2 style="text-align: center;"><%= @user.name %>の投稿一覧</h2>
-  <div class="center-block">
+  <div class="row">
    <% @photos.each do |photo| %>
-   <div><%= link_to "写真詳細ページ", photo_path(photo) %></div>
-     <div style="border: 2px solid;">
-       <%= image_tag photo.image.url if photo.image? %>
-       <%= photo.content %>
+     <div class="col-sm-6 col-md-4">
+       <div style="height: 400px;">
+         <div class="card">
+           <%= image_tag(photo.image.url, :class => "responsive-img", :height => "250") if photo.image?%>
+           <div class="caption container">
+             <h4><strong>問題：</strong><%= photo.content %></h4>
+           </div>
+           　<%= link_to "回答する", photo %>
+         </div>
+       </div>
      </div>
    <% end %>
   </div>
-</div>
