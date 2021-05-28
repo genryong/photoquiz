@@ -68,3 +68,4 @@ gem 'mini_magick'
 # gem 'rmagick'
 
 gem 'jquery-rails'
+# gem 'sorcery'

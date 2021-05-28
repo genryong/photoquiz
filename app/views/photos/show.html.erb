@@ -11,11 +11,9 @@
     </p>
     
       <%= link_to "回答する", new_photo_answer_path(@photo) %>
-
       
       <%= render 'answers/answers', answer: @answers %>
       
-     
       <%= paginate @answers %>
     </div>
 </div>

@@ -1,12 +1,9 @@
 class PhotosController < ApplicationController
   before_action :set_photo, only: %i[ show edit update destroy ]
   before_action :correct_user, only: [:destroy, :edit]
-  # GET /photos or /photos.json
-  # def index
-  #   @photos = Photo.all.order(id: :desc).page(params[:page]).per(3)
-  # end
-
-  # GET /photos/1 or /photos/1.json
+  before_action :require_user_logged_in, only: [:show, :new, :edit, :destroy]
+  
+  
   def show
     @photo = Photo.find(params[:id])
     @answers = @photo.answers.order(id: :desc).page(params[:page]).per(10)

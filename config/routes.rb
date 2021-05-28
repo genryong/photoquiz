@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     resources :answers, only: [:create, :new, :destroy]
   end
   
-  resources :users, only: [:index, :show, :create]
+  resources :users, only: [:show, :create] do
+    get :search, on: :collection
+  end
   resources :likes, only: [:create, :destroy]
   
 end

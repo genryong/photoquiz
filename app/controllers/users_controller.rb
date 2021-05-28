@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:show]
-  def index
+  before_action :require_user_logged_in, only: [:show, :search]
+  
+  def search
+    if params[:name].present?
+      @users = User.where('name LIKE ?', "%#{params[:name]}%")
+    else 
+      @users = User.none
+    end
   end
 
   def show

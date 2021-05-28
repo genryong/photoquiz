@@ -14,12 +14,13 @@
 
       <div class="form-group">
         <%= f.label :password, 'Password' %>
+        <%= link_to "(forgot password)", new_password_reset_path %>
         <%= f.password_field :password, class: 'form-control' %>
       </div>
 
       <%= f.submit 'Log in', class: 'btn btn-primary btn-block' %>
     <% end %>
-
+    
     <p>新規ユーザ登録をしていない方はこちらから <%= link_to '新規ユーザ登録', signup_path %></p>
   </div>
 </div>

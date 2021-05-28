@@ -1,5 +1,7 @@
 class AnswersController < ApplicationController
   before_action :correct_user, only: [:destroy]
+  before_action :require_user_logged_in
+  
   
   def new
     @answer =Answer.new
