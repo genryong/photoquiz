@@ -21,15 +21,15 @@ class PhotosController < ApplicationController
 
   # POST /photos or /photos.json
   def create
-    @photo = current_user.photos.new(photo_params)
+    @photo = Photo.new(photo_params)
     
     respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: "Post was successfully created." }
-        format.json { render :show, status: :created, location: @post }
+      if @photo.save
+        format.html { redirect_to @photo, notice: "Post was successfully created." }
+        format.json { render :show, status: :created, location: @photo }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.json { render json: @photo.errors, status: :unprocessable_entity }
       end
     end
   end
