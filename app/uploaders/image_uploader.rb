@@ -5,7 +5,14 @@ class ImageUploader < CarrierWave::Uploader::Base
   process resize_to_fit: [400, 200]
   process resize_to_limit: [400, 400] 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  
+  if Rails.env.production?
+      include Cloudinary::CarrierWave
+    else
+      storage :file
+  end
+
+　
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
@@ -13,6 +20,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
+end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
@@ -27,6 +35,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   #
   # def scale(width, height)
   #   # do something
+      # end
   # end
 
   # Create different versions of your uploaded files:
@@ -45,5 +54,5 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-  
-end
+
+
