@@ -23,12 +23,14 @@ class PhotosController < ApplicationController
   def create
     @photo = current_user.photos.new(photo_params)
     
-    if @photo.save
-      flash[:success] = '投稿に成功しました。'
-      redirect_to root_path
-    else
-      flash.now[:danger] = "投稿に失敗しました。"
-      render :new
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to @post, notice: "Post was successfully created." }
+        format.json { render :show, status: :created, location: @post }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
     end
   end
 
