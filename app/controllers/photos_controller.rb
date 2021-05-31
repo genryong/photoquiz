@@ -21,7 +21,7 @@ class PhotosController < ApplicationController
 
   # POST /photos or /photos.json
   def create
-    @photo = current_user.Photo.new(photo_params)
+    @photo = Photo.new(photo_params)
     
     respond_to do |format|
       if @photo.save
@@ -65,7 +65,7 @@ class PhotosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def photo_params
-      params.require(:photo).permit(:image, :content)
+      params.require(:photo).permit(:user, :image, :content)
     end
     
     def correct_user
