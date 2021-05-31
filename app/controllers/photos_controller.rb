@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :set_photo, only: %i[ show edit update destroy ]
+  before_action :set_photo, only: %i[ show edit  update destroy ]
   before_action :correct_user, only: [:destroy, :edit]
   before_action :require_user_logged_in, only: [:show, :new, :edit, :destroy]
   
@@ -21,7 +21,7 @@ class PhotosController < ApplicationController
 
   # POST /photos or /photos.json
   def create
-    @photo = Photo.new(photo_params)
+    @photo = current_user.photos.new(photo_params)
     
     respond_to do |format|
       if @photo.save
@@ -61,11 +61,12 @@ class PhotosController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_photo
       @photo = Photo.find(params[:id])
+      
     end
 
     # Only allow a list of trusted parameters through.
     def photo_params
-      params.require(:photo).permit(:user, :image, :content)
+      params.require(:photo).permit(:image, :content)
     end
     
     def correct_user
