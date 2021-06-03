@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+  
   def create
    @answer = Answer.find(params[:answer_id])
    current_user.like(@answer)
@@ -8,4 +9,6 @@ class LikesController < ApplicationController
     @answer = Answer.find(params[:answer_id])
     current_user.unlike(@answer)
   end
+  
+  
 end

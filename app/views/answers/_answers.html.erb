@@ -3,13 +3,14 @@
             <div class="media-body">
               <div style="border: solid 1px #000; margin-bottom: 12px;">
                 <div class="user-name">
-                  ユーザ名:<%= answer.user.name %>  <div id="answer_<%= answer.id %>", style="float: right;"><%= render  'likes/like_button', answer: answer %></div>
+                  ユーザ名:<%= answer.user.name %>  
+                  <% if current_user == @photo.user %>
+                  <div id="answer_<%= answer.id %>", style="float: right;"><%= render  'likes/like_button', answer: answer %></div>
+                  <% end %>
                 </div>
                   <p><%= answer.content %></p>
                    <% if current_user == answer.user %>
-                     <div style="float: right;">
                       <%= link_to "削除", photo_answer_path(@photo, answer), method: :delete, data: { confirm: "削除してもよろしいですか？？" }, class: 'btn btn-danger btn-sm'%>
-                     </div>
                    <% end %>
               </div>
             </div>
