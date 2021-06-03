@@ -1,17 +1,21 @@
 <div class="row">
   <div class="offset-md-3 col-md-5">
-    <p style="border: solid 1px black;">
-      <%= image_tag(@photo.image.url, :class => "responsive-img", :height => "250", :width => "368") if @photo.image?%>
-    </p>
-    <div>クイズの投稿者：<%= link_to @photo.user.name, user_path(@photo.user) %></div>
-    <p>
-      <strong>クイズの問題:</strong>
-      <%= @photo.content %>
-    </p>
-    
-      <%= link_to "回答する", new_photo_answer_path(@photo) %>
+    <div style="width: 500px;" >
+      <div class="card">
+      <p>
+        <%= image_tag(@photo.image.url, :class => "responsive-img", :height => "400", :width => "500") if @photo.image?%>
+      </p>
+      <div>クイズの投稿者：<%= link_to @photo.user.name, user_path(@photo.user) %></div>
+      <p>
+        <strong>クイズの問題:</strong>
+        <%= @photo.content %>
+      </p>
       
-      <%= render 'answers/answers', answer: @answers %>
+        <%= link_to "回答する", new_photo_answer_path(@photo) %>
+        
+        <%= render 'answers/answers', answer: @answers %>
+      </div>
+    </div>
       
       <%= paginate @answers %>
     </div>
