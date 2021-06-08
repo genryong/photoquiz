@@ -25,3 +25,10 @@
     padding: 5px;
     color: #000;
 }
+
+.best_answers {
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    color: black;
+}
