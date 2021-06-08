@@ -12,11 +12,11 @@
                    <% if current_user == answer.user %>
                       <%= link_to "削除", photo_answer_path(@photo, answer), method: :delete, data: { confirm: "削除してもよろしいですか？？" }, class: 'btn btn-danger btn-sm'%>
                    <% end %>
-                   <div class="alert alert-success" role="alert">
                    <% if @photo.user.best_answers?(answer) %>
-                     <p class="best_answers">ベストアンサー</p>
+                      <div class="alert alert-success" role="alert">
+                        <p class="best_answers">ベストアンサー</p>
+                      </div>
                 　 <% end %>
-                　 </div>
               </div>
             </div>
         <% end %>
