@@ -10,8 +10,8 @@
             <h4><%= photo.content %></h4>
              <%= link_to '回答する', photo %>
            <% if current_user == photo.user %>
-             <%= link_to 'Edit', edit_photo_path(photo) %>
-             <%= link_to 'Destroy', photo, method: :delete, data: { confirm: '削除してもよろしいですか?' } %>
+             <%= link_to '編集', edit_photo_path(photo) %>
+             <%= link_to '削除', photo, method: :delete, data: { confirm: '削除してもよろしいですか?' } %>
            <% end %>
           </div>
         </div>
