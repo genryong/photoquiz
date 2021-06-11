@@ -7,9 +7,9 @@
 
 https://photoquiz.herokuapp.com/
 
-テストユーザ
-email:  testuser@co.jp
-password:  password
+# テストユーザ
+* email:  test@co.jp
+* password:  test1234
 
 # このアプリケーションで使っている技術
 * インフラ heroku
