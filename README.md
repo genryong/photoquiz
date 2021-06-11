@@ -1,24 +1,34 @@
-# README
+# photoquiz
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+写真を投稿してその写真に関するクイズを出して、クイズに答えてもらうサービスです。
 
-Things you may want to cover:
 
-* Ruby version
+# リンク
 
-* System dependencies
+https://photoquiz.herokuapp.com/
 
-* Configuration
+テストユーザ
+email:  testuser@co.jp
+password:  password
 
-* Database creation
+# このアプリケーションで使っている技術
+* インフラ heroku
+* データベース　MySQL
+* 開発環境 EC2
+* 言語　Ruby on Rails
+* 画像ストレージ　cloudinary
 
-* Database initialization
+# 機能
+* ログイン機能
+* 画像投稿のCRUD機能
+* 画像投稿機能 → carrierwave
+* 写真のクイズに対するアンサー機能
+* アンサーにベストアンサーをつける機能
+* 検索機能
+* ペーネーション機能 → kaminari
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
+
+
