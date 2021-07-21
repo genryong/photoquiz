@@ -22,7 +22,7 @@ class AnswersController < ApplicationController
     
   def destroy
     @answer.destroy
-    flash[:danger] = "コメントを削除しました。"
+    flash[:danger] = "コメントを削除しました！"
     redirect_back(fallback_location: root_path)
   end
   
